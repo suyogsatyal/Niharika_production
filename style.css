@@ -1677,6 +1677,7 @@ body,
 .banner-area, 
 .banner-area div {
   height: 100%;
+  max-height: 50vh;
 }
 
 .banner-area.auto-height, 
