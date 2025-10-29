@@ -499,121 +499,162 @@
     margin: 0 auto;
 }
 
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .cards-wrapper {
     display: grid;
-    grid-template-columns: 500px 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: center;
+    align-items: start;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 @media (max-width: 1024px) {
     .cards-wrapper {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 40px;
     }
 }
 
-/* Sticky Notes Section */
+/* ---------- ACHIEVEMENTS: SINGLE ROW, SMALLER CARDS ---------- */
 .stats-section {
-    background: #36c9bc;
-    padding: 30px;
-    border-radius: 3px;
-    transform: rotate(-2deg);
+    background: #e7f4fd;
+    padding: 25px;
+    border-radius: 8px;
+    transform: rotate(-1.5deg);
     position: relative;
+    /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); */
 }
 
 .stats-section::before {
     content: '';
     position: absolute;
-    top: -10px;
+    top: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 3px 3px 0 0;
+    width: 50px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 4px 4px 0 0;
 }
 
 .stats-section h2 {
     text-align: center;
+    font-size: 26px;
+    margin-bottom: 20px;
     color: #333;
-    font-size: 28px;
-    margin-bottom: 30px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
+/* Single row, smaller cards */
 .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Smooth iOS scroll */
+}
+
+.stats-grid::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .stat-note {
     background: #fff;
-    padding: 25px 20px;
-    border-radius: 5px;
-    transform: rotate(1deg);
-    transition: all 0.3s ease;
+    padding: 18px 16px;
+    border-radius: 8px;
+    min-width: 130px;
+    flex: 1;
     text-align: center;
-    min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    transform: rotate(0.8deg);
 }
 
 .stat-note:nth-child(even) {
-    transform: rotate(-1.5deg);
+    transform: rotate(-1.2deg);
 }
 
 .stat-note:hover {
-    transform: rotate(0deg) translateY(-5px);
+    transform: translateY(-6px) rotate(0deg) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .stat-number {
-    font-size: 48px;
-    font-weight: bold;
+    font-size: 36px;
+    font-weight: 800;
     color: #667eea;
     display: block;
-    margin-bottom: 10px;
-    min-width: 120px;
+    margin-bottom: 6px;
     font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
-    font-size: 16px;
+    font-size: 14px;
     color: #555;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
-/* Clients Carousel Section */
+/* Hide scrollbar but keep functionality */
+.stats-grid::-webkit-scrollbar {
+    height: 6px;
+}
+
+.stats-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.stats-grid::-webkit-scrollbar-thumb {
+    background: #c0d4f5;
+    border-radius: 3px;
+}
+
+/* ---------- CLIENTS: FULL-WIDTH SCROLLING ROW ---------- */
 .new-clients-section {
     background: #fff;
-    padding: 40px 30px;
-    border-radius: 10px;
-    position: relative;
+    padding: 40px 20px;
+    border-radius: 12px;
     overflow: hidden;
-    max-width: 100%;
 }
 
 .new-clients-section h2 {
     text-align: center;
+    font-size: 26px;
+    margin-bottom: 30px;
     color: #333;
-    font-size: 28px;
-    margin-bottom: 40px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .carousel-container {
-    position: relative;
     overflow: hidden;
-    padding: 20px 0;
+    position: relative;
 }
 
 .carousel-track {
+    --slide-w: 180px;
+    --gap: 40px;
+    --slides: 5;
+    --total-width: calc(var(--slides) * (var(--slide-w) + var(--gap)));
+
     display: flex;
-    animation: scroll 20s linear infinite;
-    gap: 30px;
+    gap: var(--gap);
+    animation: scroll 22s linear infinite;
+    width: calc(var(--total-width) * 2);
+    /* 2× for seamless loop */
 }
 
 .carousel-track:hover {
@@ -621,32 +662,33 @@
 }
 
 .client-slide {
-    flex: 0 0 auto;
-    width: 200px;
-    height: 120px;
+    flex: 0 0 var(--slide-w);
+    height: 110px;
     background: #f8f9fa;
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    transition: all 0.3s ease;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .client-slide:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
 .client-slide img {
     max-width: 100%;
-    max-height: 80px;
+    max-height: 70px;
     object-fit: contain;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+    filter: grayscale(0.2);
+    transition: filter 0.3s;
 }
 
 .client-slide:hover img {
-    filter: grayscale(0%);
+    filter: grayscale(0);
 }
 
 @keyframes scroll {
@@ -655,75 +697,57 @@
     }
 
     100% {
-        transform: translateX(calc(-200px * 5 - 40px * 5));
+        transform: translateX(-50%);
     }
 }
 
-/* Clone the slides for seamless loop */
-.carousel-track::after {
-    content: '';
-    position: absolute;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .cards-wrapper {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .stats-section {
-        transform: rotate(0deg);
-    }
-}
-
-@media (max-width: 968px) {
-
-    .client-slide {
-        width: 150px;
-        height: 100px;
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(calc(-150px * 5 - 40px * 5));
-        }
-    }
-}
-
-@media (max-width: 640px) {
+/* ---------- RESPONSIVE: CAROUSEL KEEPS SCROLLING ON MOBILE ---------- */
+@media (max-width: 768px) {
     .stats-grid {
-        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-note {
+        min-width: 110px;
+        padding: 14px 10px;
     }
 
     .stat-number {
-        font-size: 36px;
+        font-size: 30px;
     }
 
     .stat-label {
-        font-size: 14px;
+        font-size: 13px;
     }
 
-    .client-slide {
-        width: 120px;
-        height: 80px;
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(calc(-120px * 5 - 40px * 5));
-        }
+    /* Keep carousel scrolling, but adjust size */
+    .carousel-track {
+        --slide-w: 140px;
+        --gap: 20px;
+        animation-duration: 18s;
+        /* Slightly faster on mobile */
     }
 }
 
+@media (max-width: 480px) {
+    .carousel-track {
+        --slide-w: 120px;
+        --gap: 16px;
+        animation-duration: 15s;
+    }
+
+    .stat-note {
+        min-width: 90px;
+        padding: 12px 8px;
+    }
+
+    .stat-number {
+        font-size: 26px;
+    }
+}
+
+
+/* Team Section */
 .team-items {
     max-width: 1400px;
     margin: 0 auto;
@@ -767,6 +791,7 @@
 /* Description Section */
 .description {
     max-height: 0;
+    margin-top: 10px;
     overflow: hidden;
     transition: max-height 0.4s ease;
     padding: 0 25px;
