@@ -5791,8 +5791,8 @@ body,
 
 .fun-factor-area .item .timer {
   display: inline-block;
-  font-size: 60px;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 500;
   line-height: 1;
   margin-top: -5px;
   margin-bottom: 10px;
@@ -5805,8 +5805,8 @@ body,
 
 .fun-factor-area .item .medium {
   display: block;
-  font-weight: 700;
-  font-size: 17px;
+  font-weight: 500;
+  font-size: 15px;
   margin-bottom: -5px;
   color: var(--dark);
   text-transform: capitalize;
